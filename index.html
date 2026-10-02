@@ -1,164 +1,1301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Irina Abasheva — real estate, relocation and property services in Portugal.">
-  <title>Irina Abasheva | Real Estate & Relocation in Portugal</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irina Abasheva — Real Estate Consultant in Portugal</title>
+    
+    <!-- Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        'cream-card': '#FAF6F0',
+                        gold: {
+                            light: '#E6CA7E',
+                            DEFAULT: '#C5A059',
+                            dark: '#9A7B39',
+                        },
+                        charcoal: {
+                            light: '#4A4846',
+                            DEFAULT: '#2C2A29',
+                            dark: '#1A1918'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2C2A29;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #C5A059 0%, #9A7B39 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gold-border {
+            border-color: #C5A059;
+        }
+        
+        .gold-btn {
+            background: linear-gradient(135deg, #C5A059 0%, #B38E46 100%);
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        
+        .gold-btn:hover {
+            background: linear-gradient(135deg, #B38E46 0%, #9A7B39 100%);
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .gold-outline-btn {
+            border: 1px solid #C5A059;
+            color: #2C2A29;
+            transition: all 0.3s ease;
+        }
+
+        .gold-outline-btn:hover {
+            background-color: #C5A059;
+            color: #FFFFFF;
+        }
+
+        /* Glassmorphism Navigation Header */
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Subtle Smooth Transitions */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #C5A059;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link.active::after, .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #C5A059;
+            font-weight: 600;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E6CA7E;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A059;
+        }
+    </style>
 </head>
-<body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="logo" href="#top">IRINA <span>ABASHEVA</span></a>
-      <button class="menu-toggle" aria-label="Open menu">☰</button>
-      <nav id="nav">
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <button class="lang" data-lang="ru">RU</button>
-        <button class="lang active" data-lang="en">EN</button>
-      </nav>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-gold selection:text-white">
+
+    <header class="sticky top-0 z-50 glass-nav border-b border-gold/15 transition-all duration-300">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" onclick="navigateTo('home')" class="group flex flex-col">
+                <span class="font-serif text-xl sm:text-2xl tracking-wider font-semibold text-charcoal group-hover:text-gold transition-colors">
+                    IRINA ABASHEVA
+                </span>
+                <span class="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-charcoal-light font-light">
+                    Real Estate • Portugal
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Tabs -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-link text-sm font-medium tracking-wide uppercase text-charcoal py-1">
+                    <span data-i18n="nav_home">Главная</span>
+                </button>
+                <button onclick="navigateTo('services')" id="nav-services" class="nav-link text-sm font-medium tracking-wide uppercase text-charcoal py-1">
+                    <span data-i18n="nav_services">Услуги</span>
+                </button>
+                <button onclick="navigateTo('articles')" id="nav-articles" class="nav-link text-sm font-medium tracking-wide uppercase text-charcoal py-1">
+                    <span data-i18n="nav_articles">Статьи</span>
+                </button>
+                <button onclick="navigateTo('contact')" id="nav-contact" class="nav-link text-sm font-medium tracking-wide uppercase text-charcoal py-1">
+                    <span data-i18n="nav_contact">Контакты</span>
+                </button>
+            </nav>
+
+            <!-- Language Switcher & Mobile Menu Button -->
+            <div class="flex items-center space-x-4">
+                <!-- Language Switcher -->
+                <div class="inline-flex rounded-full border border-gold/30 p-1 bg-cream-card/80 text-xs font-medium">
+                    <button onclick="switchLanguage('ru')" id="lang-ru" class="px-2.5 py-1 rounded-full transition-colors active-lang bg-gold text-white">RU</button>
+                    <button onclick="switchLanguage('en')" id="lang-en" class="px-2.5 py-1 rounded-full transition-colors text-charcoal hover:text-gold">EN</button>
+                    <button onclick="switchLanguage('pt')" id="lang-pt" class="px-2.5 py-1 rounded-full transition-colors text-charcoal hover:text-gold">PT</button>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-charcoal p-2 focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-card border-b border-gold/20 px-6 py-6 space-y-4">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2 font-serif text-lg text-charcoal border-b border-gold/10">
+                <span data-i18n="nav_home">Главная</span>
+            </button>
+            <button onclick="navigateTo('services'); toggleMobileMenu()" class="block w-full text-left py-2 font-serif text-lg text-charcoal border-b border-gold/10">
+                <span data-i18n="nav_services">Услуги</span>
+            </button>
+            <button onclick="navigateTo('articles'); toggleMobileMenu()" class="block w-full text-left py-2 font-serif text-lg text-charcoal border-b border-gold/10">
+                <span data-i18n="nav_articles">Статьи</span>
+            </button>
+            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-2 font-serif text-lg text-charcoal">
+                <span data-i18n="nav_contact">Контакты</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12">
+
+        <!-- ================= PAGE 1: HOME / ABOUT ================= -->
+        <section id="page-home" class="page-section active space-y-16">
+            <!-- Hero Banner -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-block px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold-dark text-xs uppercase tracking-widest font-semibold">
+                        <span data-i18n="hero_badge">Консультант по недвижимости в Португалии</span>
+                    </div>
+                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-charcoal leading-tight">
+                        <span data-i18n="hero_title_1">Ирина Абашева</span><br>
+                        <span class="italic font-light gold-gradient-text" data-i18n="hero_title_2">Ваш персональный гид на рынке недвижимости</span>
+                    </h1>
+                    <p class="text-charcoal-light text-base sm:text-lg leading-relaxed font-light max-w-2xl" data-i18n="hero_subtitle">
+                        Профессиональный подбор, продажа и экспертная поддержка при покупке, аренде и инвестициях в жилую недвижимость Португалии. Прозрачные условия, личный подход и полное юридическое сопровождение.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="navigateTo('services')" class="gold-btn px-8 py-3.5 rounded-full text-sm font-medium uppercase tracking-wider shadow-md">
+                            <span data-i18n="btn_explore_services">Посмотреть услуги</span>
+                        </button>
+                        <button onclick="navigateTo('contact')" class="gold-outline-btn px-8 py-3.5 rounded-full text-sm font-medium uppercase tracking-wider">
+                            <span data-i18n="btn_get_in_touch">Связаться со мной</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Card / Visual Accent -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md p-6 bg-cream-card rounded-2xl border border-gold/20 shadow-xl">
+                        <div class="relative aspect-[4/5] rounded-xl overflow-hidden mb-6 bg-gold/5 flex items-center justify-center border border-gold/10">
+                            <!-- High quality elegant SVG Placeholder for Irina -->
+                            <div class="text-center p-8">
+                                <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gold/10 flex items-center justify-center border border-gold/30">
+                                    <i class="fa-solid fa-user-tie text-4xl text-gold"></i>
+                                </div>
+                                <h3 class="font-serif text-xl font-semibold text-charcoal">Ирина Абашева</h3>
+                                <p class="text-xs uppercase tracking-widest text-gold-dark mt-1" data-i18n="agent_title">Лицензированный риелтор</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-charcoal-light">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-location-dot text-gold w-5 text-center"></i>
+                                <span data-i18n="stat_location">Португалия (Север, Центр, Лиссабон и побережье)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-shield-halved text-gold w-5 text-center"></i>
+                                <span data-i18n="stat_partner">Партнерская сеть ведущих агентств Португалии</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-comments text-gold w-5 text-center"></i>
+                                <span>RU • EN • PT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section Details -->
+            <div class="bg-cream-card rounded-3xl p-8 sm:p-12 border border-gold/15 space-y-8">
+                <div class="max-w-3xl">
+                    <h2 class="font-serif text-2xl sm:text-3xl text-charcoal mb-4" data-i18n="about_heading">Обо мне и моем подходе</h2>
+                    <div class="w-16 h-0.5 bg-gold mb-6"></div>
+                    <p class="text-charcoal-light leading-relaxed text-base sm:text-lg mb-4 font-light" data-i18n="about_p1">
+                        Я работаю на рынке недвижимости Португалии, помогая клиентам со всего мира покупать, продавать и арендовать жилье с максимальной безопасностью и комфортом. 
+                    </p>
+                    <p class="text-charcoal-light leading-relaxed text-base sm:text-lg font-light" data-i18n="about_p2">
+                        Главный приоритет моей работы — защита интересов клиента, трансляция реальной ситуации на рынке и снятие всех стрессовых факторов, связанных с оформлением документов, адаптацией и взаимодействием с местными структурами.
+                    </p>
+                </div>
+
+                <!-- 3 Pillars -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                    <div class="p-6 rounded-2xl bg-cream border border-gold/10 hover:border-gold/30 transition-all">
+                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4 text-gold">
+                            <i class="fa-solid fa-chart-line text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-lg font-semibold text-charcoal mb-2" data-i18n="pillar_1_title">Аналитика рынка</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="pillar_1_desc">Оценка реальной стоимости объектов, динамики цен по регионам и потенциала капитализации.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-cream border border-gold/10 hover:border-gold/30 transition-all">
+                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4 text-gold">
+                            <i class="fa-solid fa-magnifying-glass-location text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-lg font-semibold text-charcoal mb-2" data-i18n="pillar_2_title">Индивидуальный подбор</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="pillar_2_desc">Поиск объектов под конкретный жизненный сценарий, образ жизни или инвестиционные задачи.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-cream border border-gold/10 hover:border-gold/30 transition-all">
+                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4 text-gold">
+                            <i class="fa-solid fa-file-contract text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-lg font-semibold text-charcoal mb-2" data-i18n="pillar_3_title">Полное сопровождение</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="pillar_3_desc">Координация с юристами, нотариусами, налоговыми консультантами и банками до передачи ключей.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PAGE 2: SERVICES ================= -->
+        <section id="page-services" class="page-section space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-dark" data-i18n="services_subtitle">Услуги и Тарифы</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-charcoal" data-i18n="services_title">Профессиональные услуги по недвижимости</h2>
+                <p class="text-charcoal-light font-light text-base" data-i18n="services_intro">Полный спектр услуг с четким ценообразованием и индивидуальным подходом на каждом этапе сделки.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1: Property Sales -->
+                <div class="bg-cream-card rounded-2xl p-6 sm:p-8 border border-gold/20 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                                <i class="fa-solid fa-house-circle-check"></i>
+                            </span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-gold/15 text-gold-dark rounded-full" data-i18n="service_1_price">5% + IVA (23%)</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal" data-i18n="service_1_title">Продажа вашей недвижимости</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="service_1_desc">
+                            Комплексное сопровождение продажи объектов в Португалии по максимальной рыночной стоимости.
+                        </p>
+                        <ul class="text-xs text-charcoal-light space-y-2 pt-2 border-t border-gold/10">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s1_feat_1">Сравнительный анализ и оценка стоимости</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s1_feat_2">Профессиональная подготовка и продвижение</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s1_feat_3">Работа через агентскую сеть Португалии</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s1_feat_4">Организация показов и ведение переговоров</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="requestService('Продажа недвижимости')" class="gold-outline-btn w-full mt-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
+                        <span data-i18n="btn_order_service">Заказать услугу</span>
+                    </button>
+                </div>
+
+                <!-- Service 2: Buyer Property Search -->
+                <div class="bg-cream-card rounded-2xl p-6 sm:p-8 border border-gold/20 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                                <i class="fa-solid fa-key"></i>
+                            </span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-gold/15 text-gold-dark rounded-full" data-i18n="service_2_price">1 000 €</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal" data-i18n="service_2_title">Подбор недвижимости под покупку</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="service_2_desc">
+                            Персональный поиск объекта недвижимости, полностью удовлетворяющего вашим целям и бюджету.
+                        </p>
+                        <ul class="text-xs text-charcoal-light space-y-2 pt-2 border-t border-gold/10">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s2_feat_1">Анализ рынка и выбор проверенных объектов</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s2_feat_2">Проверка юридической чистоты с юристом</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s2_feat_3">Организация показов и сопровождение сделки</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s2_feat_4">Помощь с открытием счета и NIF</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="requestService('Подбор недвижимости покупателю')" class="gold-outline-btn w-full mt-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
+                        <span data-i18n="btn_order_service">Заказать услугу</span>
+                    </button>
+                </div>
+
+                <!-- Service 3: Rental Property Search -->
+                <div class="bg-cream-card rounded-2xl p-6 sm:p-8 border border-gold/20 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                                <i class="fa-solid fa-building"></i>
+                            </span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-gold/15 text-gold-dark rounded-full" data-i18n="service_3_price">от 50% стоимости месяца</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal" data-i18n="service_3_title">Поиск долгосрочной и среднесрочной аренды</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="service_3_desc">
+                            Подбор жилья в аренду (1-11 месяцев или от 12 месяцев) на выгодных и понятных условиях.
+                        </p>
+                        <ul class="text-xs text-charcoal-light space-y-2 pt-2 border-t border-gold/10">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s3_feat_1">Долгосрок (12+ мес): 1 – 1.5 арендные платы</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s3_feat_2">Среднесрок (1-11 мес): 50% от 1 месяца</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s3_feat_3">Коммуникация с владельцами от вашего имени</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s3_feat_4">Согласование контракта аренды</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="requestService('Поиск аренды')" class="gold-outline-btn w-full mt-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
+                        <span data-i18n="btn_order_service">Заказать услугу</span>
+                    </button>
+                </div>
+
+                <!-- Service 4: Neighborhood Orientation Tour -->
+                <div class="bg-cream-card rounded-2xl p-6 sm:p-8 border border-gold/20 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                                <i class="fa-solid fa-[#000]"></i>
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-gold/15 text-gold-dark rounded-full" data-i18n="service_4_price">200 € / 2 часа</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal" data-i18n="service_4_title">Ознакомительный тур по району</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="service_4_desc">
+                            Живой пешеходный или автомобильный тур по интересующему вас городу или району Португалии.
+                        </p>
+                        <ul class="text-xs text-charcoal-light space-y-2 pt-2 border-t border-gold/10">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s4_feat_1">Обзор инфраструктуры, школ и транспорта</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s4_feat_2">Оценка плюсов и минусов каждого микрорайона</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s4_feat_3">Рекомендации местных заведений и сервисов</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s4_feat_4">Ответы на вопросы по бытовой жизни</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="requestService('Ознакомительный тур по району')" class="gold-outline-btn w-full mt-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
+                        <span data-i18n="btn_order_service">Заказать услугу</span>
+                    </button>
+                </div>
+
+                <!-- Service 5: Relocation Consultation -->
+                <div class="bg-cream-card rounded-2xl p-6 sm:p-8 border border-gold/20 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                                <i class="fa-solid fa-user-gear"></i>
+                            </span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-gold/15 text-gold-dark rounded-full" data-i18n="service_5_price">100 € / час</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal" data-i18n="service_5_title">Консультация по переезду и жилью</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="service_5_desc">
+                            Онлайн или очная индивидуальная консультация по стратегическим вопросам переезда и рынка жилья.
+                        </p>
+                        <ul class="text-xs text-charcoal-light space-y-2 pt-2 border-t border-gold/10">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s5_feat_1">Анализ вариантов покупки и аренды</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s5_feat_2">Обзор специфики регионов Португалии</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s5_feat_3">Пошаговая дорожная карта переезда</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s5_feat_4">Ответы на бытовые и юридические вопросы</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="requestService('Консультация по переезду')" class="gold-outline-btn w-full mt-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
+                        <span data-i18n="btn_order_service">Заказать услугу</span>
+                    </button>
+                </div>
+
+                <!-- Service 6: Renting Out Your Property & Utilities -->
+                <div class="bg-cream-card rounded-2xl p-6 sm:p-8 border border-gold/20 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                                <i class="fa-solid fa-plug-circle-check"></i>
+                            </span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-gold/15 text-gold-dark rounded-full" data-i18n="service_6_price">По запросу</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal" data-i18n="service_6_title">Сдача объекта в аренду и коммуникации</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="service_6_desc">
+                            Сдача вашей недвижимости проверенным жильцам и помощь в подключении коммунальных услуг.
+                        </p>
+                        <ul class="text-xs text-charcoal-light space-y-2 pt-2 border-t border-gold/10">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s6_feat_1">Поиск и благонадежная проверка арендаторов</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s6_feat_2">Подготовка объекта, фото и публикация</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s6_feat_3">Подключение воды, электричества, газа и интернета</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold mr-2"></i><span data-i18n="s6_feat_4">Оформление контрактов и переоформление счетов</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="requestService('Сдача недвижимости и коммуникации')" class="gold-outline-btn w-full mt-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
+                        <span data-i18n="btn_order_service">Заказать услугу</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= PAGE 3: ARTICLES ================= -->
+        <section id="page-articles" class="page-section space-y-10">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-dark" data-i18n="articles_subtitle">Блог и Аналитика</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-charcoal" data-i18n="articles_title">Статьи о недвижимости и жизни в Португалии</h2>
+                <p class="text-charcoal-light font-light text-base" data-i18n="articles_intro">Обзоры рынка, аналитические данные и полезные руководства для покупателей, инвесторов и арендаторов.</p>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Article 1 -->
+                <article class="bg-cream-card rounded-2xl overflow-hidden border border-gold/15 flex flex-col justify-between hover:shadow-md transition-all">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between text-xs text-gold-dark font-medium">
+                            <span data-i18n="art_1_tag">Анализ рынка</span>
+                            <span>2024–2025</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal hover:text-gold transition-colors cursor-pointer" onclick="openArticleModal(1)" data-i18n="art_1_title">
+                            Бум недвижимости на севере Португалии
+                        </h3>
+                        <p class="text-sm text-charcoal-light font-light line-clamp-3" data-i18n="art_1_excerpt">
+                            Почему северные регионы и пригороды Порту становятся ключевым магнитом для инвестиций и покупки жилья для постоянного проживания.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openArticleModal(1)" class="text-xs font-semibold text-gold uppercase tracking-wider flex items-center hover:underline">
+                            <span data-i18n="btn_read_more">Читать полностью</span> <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="bg-cream-card rounded-2xl overflow-hidden border border-gold/15 flex flex-col justify-between hover:shadow-md transition-all">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between text-xs text-gold-dark font-medium">
+                            <span data-i18n="art_2_tag">Исследование</span>
+                            <span>2025–2026</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal hover:text-gold transition-colors cursor-pointer" onclick="openArticleModal(2)" data-i18n="art_2_title">
+                            Португальские семьи и динамика рынка жилья
+                        </h3>
+                        <p class="text-sm text-charcoal-light font-light line-clamp-3" data-i18n="art_2_excerpt">
+                            Как меняются предпочтения португальских семей, спрос на качественное жилье и баланс между покупкой и долгосрочной арендой.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openArticleModal(2)" class="text-xs font-semibold text-gold uppercase tracking-wider flex items-center hover:underline">
+                            <span data-i18n="btn_read_more">Читать полностью</span> <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-cream-card rounded-2xl overflow-hidden border border-gold/15 flex flex-col justify-between hover:shadow-md transition-all">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between text-xs text-gold-dark font-medium">
+                            <span data-i18n="art_3_tag">Локальный обзор</span>
+                            <span>2026</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-charcoal hover:text-gold transition-colors cursor-pointer" onclick="openArticleModal(3)" data-i18n="art_3_title">
+                            Алкасер-ду-Сал в цифрах и фактах
+                        </h3>
+                        <p class="text-sm text-charcoal-light font-light line-clamp-3" data-i18n="art_3_excerpt">
+                            Полный обзор потенциала района Алкасер-ду-Сал: рост спроса, близость к побережью Алентежу и перспективные объекты.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openArticleModal(3)" class="text-xs font-semibold text-gold uppercase tracking-wider flex items-center hover:underline">
+                            <span data-i18n="btn_read_more">Читать полностью</span> <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- ================= PAGE 4: CONTACT ================= -->
+        <section id="page-contact" class="page-section space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-dark" data-i18n="contact_subtitle">Связаться со мной</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-charcoal" data-i18n="contact_title">Давайте обсудим ваш проект</h2>
+                <p class="text-charcoal-light font-light text-base" data-i18n="contact_intro">Оставьте заявку или свяжитесь со мной напрямую через удобные мессенджеры.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Direct Contacts Box -->
+                <div class="lg:col-span-5 bg-cream-card rounded-3xl p-8 border border-gold/20 space-y-8">
+                    <div>
+                        <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2" data-i18n="direct_contacts_title">Прямая связь</h3>
+                        <p class="text-sm text-charcoal-light font-light" data-i18n="direct_contacts_desc">Быстрые временные каналы связи (замените на свои реальные контакты).</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- WhatsApp Link (Temporary/Customizable) -->
+                        <a id="whatsapp-link" href="https://wa.me/351900000000?text=Здравствуйте,%20Ирина!%20Интересует%20консультация%20по%20недвижимости." target="_blank" rel="noopener noreferrer" 
+                           class="flex items-center p-4 rounded-2xl bg-white border border-gold/20 hover:border-gold transition-all group">
+                            <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl mr-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-charcoal-light uppercase tracking-wider" data-i18n="label_whatsapp">WhatsApp / Сообщения</div>
+                                <div class="font-semibold text-charcoal group-hover:text-gold transition-colors">+351 (WhatsApp)</div>
+                            </div>
+                        </a>
+
+                        <!-- Email Link (Temporary/Customizable) -->
+                        <a id="email-link" href="mailto:contact@abashevairina.com?subject=Запрос%20по%20недвижимости" 
+                           class="flex items-center p-4 rounded-2xl bg-white border border-gold/20 hover:border-gold transition-all group">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 text-gold flex items-center justify-center text-2xl mr-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-charcoal-light uppercase tracking-wider" data-i18n="label_email">Электронная почта</div>
+                                <div class="font-semibold text-charcoal group-hover:text-gold transition-colors">contact@abashevairina.com</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-cream border border-gold/10 text-xs text-charcoal-light space-y-1">
+                        <p class="font-semibold text-charcoal" data-i18n="contact_hours_title">Рабочие часы:</p>
+                        <p data-i18n="contact_hours_val">Пн — Пт: 09:00 - 19:00 (WET / Португалия)</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 bg-cream-card rounded-3xl p-8 border border-gold/20">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-2" data-i18n="form_name">Ваше имя</label>
+                                <input type="text" id="form-name-input" required class="w-full px-4 py-3 rounded-xl bg-white border border-gold/20 focus:outline-none focus:border-gold text-sm text-charcoal" placeholder="Александр">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-2" data-i18n="form_phone">Телефон / WhatsApp</label>
+                                <input type="tel" id="form-phone-input" required class="w-full px-4 py-3 rounded-xl bg-white border border-gold/20 focus:outline-none focus:border-gold text-sm text-charcoal" placeholder="+351 900 000 000">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-2" data-i18n="form_email">Email</label>
+                            <input type="email" id="form-email-input" required class="w-full px-4 py-3 rounded-xl bg-white border border-gold/20 focus:outline-none focus:border-gold text-sm text-charcoal" placeholder="example@mail.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-2" data-i18n="form_service">Интересующая услуга</label>
+                            <select id="form-service-select" class="w-full px-4 py-3 rounded-xl bg-white border border-gold/20 focus:outline-none focus:border-gold text-sm text-charcoal">
+                                <option value="Консультация" data-i18n="opt_consultation">Общая консультация</option>
+                                <option value="Продажа недвижимости" data-i18n="opt_sales">Продажа недвижимости</option>
+                                <option value="Подбор под покупку" data-i18n="opt_buying">Подбор недвижимости под покупку</option>
+                                <option value="Поиск аренды" data-i18n="opt_rental">Поиск аренды</option>
+                                <option value="Ознакомительный тур" data-i18n="opt_tour">Ознакомительный тур по району</option>
+                                <option value="Сдача объекта" data-i18n="opt_rent_out">Сдача объекта / Коммуникации</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-2" data-i18n="form_message">Сообщение</label>
+                            <textarea id="form-message-input" rows="4" class="w-full px-4 py-3 rounded-xl bg-white border border-gold/20 focus:outline-none focus:border-gold text-sm text-charcoal" placeholder="Расскажите о ваших пожеланиях..."></textarea>
+                        </div>
+
+                        <button type="submit" class="gold-btn w-full py-4 rounded-xl text-sm font-semibold uppercase tracking-wider shadow-md">
+                            <span data-i18n="btn_send_message">Отправить сообщение</span>
+                        </button>
+                    </form>
+
+                    <!-- Success Message Box -->
+                    <div id="form-success-message" class="hidden text-center py-12 space-y-4">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-charcoal font-semibold" data-i18n="msg_success_title">Спасибо за обращение!</h3>
+                        <p class="text-sm text-charcoal-light max-w-md mx-auto" data-i18n="msg_success_desc">Ваше сообщение успешно отправлено. Ирина свяжется с вами в самое ближайшее время.</p>
+                        <button onclick="resetContactForm()" class="gold-outline-btn px-6 py-2 rounded-xl text-xs uppercase tracking-wider mt-4">
+                            <span data-i18n="btn_send_another">Отправить ещё одно</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="article-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-cream rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 border border-gold/30 relative space-y-6 shadow-2xl">
+            <button onclick="closeArticleModal()" class="absolute top-6 right-6 text-charcoal hover:text-gold p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <span id="modal-tag" class="text-xs font-semibold uppercase tracking-widest text-gold-dark">Tag</span>
+            <h2 id="modal-title" class="font-serif text-2xl sm:text-3xl text-charcoal">Article Title</h2>
+            <div class="w-16 h-0.5 bg-gold"></div>
+
+            <div id="modal-body" class="text-charcoal-light text-base leading-relaxed space-y-4 font-light">
+                <!-- Dynamic Article Content -->
+            </div>
+
+            <div class="pt-6 border-t border-gold/15 flex justify-end">
+                <button onclick="closeArticleModal()" class="gold-btn px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider">
+                    <span data-i18n="btn_close">Закрыть</span>
+                </button>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow" data-en="PORTUGAL · REAL ESTATE · RELOCATION" data-ru="ПОРТУГАЛИЯ · НЕДВИЖИМОСТЬ · РЕЛОКАЦИЯ"></p>
-          <h1 data-en="Your life in Portugal, with the right support." data-ru="Ваша жизнь в Португалии — с правильной поддержкой."></h1>
-          <p class="hero-text" data-en="Property, relocation and practical support — from finding a home to settling into everyday life in Portugal." data-ru="Недвижимость, релокация и практическая помощь — от поиска жилья до обустройства жизни в Португалии."></p>
-          <div class="hero-actions">
-            <a class="button" href="#services" data-en="Explore services" data-ru="Посмотреть услуги"></a>
-            <a class="button button-light" href="#contact" data-en="Contact me" data-ru="Связаться со мной"></a>
-          </div>
+    <footer class="bg-cream-card border-t border-gold/15 py-12 mt-16">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <div class="font-serif text-lg font-semibold tracking-wider text-charcoal">IRINA ABASHEVA</div>
+                <div class="text-xs text-charcoal-light font-light mt-1" data-i18n="footer_subtitle">Недвижимость и консультации в Португалии</div>
+            </div>
+
+            <div class="flex space-x-6 text-sm text-charcoal">
+                <button onclick="navigateTo('home')" class="hover:text-gold transition-colors" data-i18n="nav_home">Главная</button>
+                <button onclick="navigateTo('services')" class="hover:text-gold transition-colors" data-i18n="nav_services">Услуги</button>
+                <button onclick="navigateTo('articles')" class="hover:text-gold transition-colors" data-i18n="nav_articles">Статьи</button>
+                <button onclick="navigateTo('contact')" class="hover:text-gold transition-colors" data-i18n="nav_contact">Контакты</button>
+            </div>
+
+            <div class="text-xs text-charcoal-light font-light text-center md:text-right">
+                &copy; <span id="year-span"></span> Irina Abasheva. <span data-i18n="footer_rights">Все права защищены.</span>
+            </div>
         </div>
-        <div class="hero-card">
-          <span>Portugal</span>
-          <strong>Real estate<br>& relocation</strong>
-          <small>Personal service · Local knowledge · Full support</small>
-        </div>
-      </div>
-    </section>
+    </footer>
 
-    <section class="intro">
-      <div class="container narrow">
-        <p class="eyebrow" data-en="HOW I CAN HELP" data-ru="ЧЕМ Я МОГУ ПОМОЧЬ"></p>
-        <h2 data-en="One point of contact for the important things." data-ru="Один человек, который помогает решить важные вопросы."></h2>
-        <p data-en="Whether you are buying, selling, renting, relocating or simply need practical help after moving, I can coordinate the process and keep things clear and organised." data-ru="Покупка, продажа, аренда, переезд или практические вопросы после переезда — я помогу организовать процесс и сделать его понятным и спокойным."></p>
-      </div>
-    </section>
+    <script>
+        // Set dynamic current year
+        document.getElementById('year-span').textContent = new Date().getFullYear();
 
-    <section id="services" class="services section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow" data-en="SERVICES" data-ru="УСЛУГИ"></p>
-          <h2 data-en="Services in Portugal" data-ru="Услуги в Португалии"></h2>
-        </div>
-        <div class="service-grid">
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
 
-          <article class="service-card">
-            <span class="number">01</span>
-            <h3 data-en="Selling Your Property" data-ru="Продажа вашей недвижимости"></h3>
-            <p data-en="Full support from preparing the property and finding buyers to negotiation and completion." data-ru="Полное сопровождение — от подготовки объекта и поиска покупателей до переговоров и завершения сделки."></p>
-            <div class="price">5% + VAT 23%</div>
-            <small data-en="Paid only upon successful completion." data-ru="Оплата только после успешного завершения сделки."></small>
-          </article>
+        // Language Dictionary
+        const i18n = {
+            ru: {
+                nav_home: "Главная",
+                nav_services: "Услуги",
+                nav_articles: "Статьи",
+                nav_contact: "Контакты",
+                
+                hero_badge: "Консультант по недвижимости в Португалии",
+                hero_title_1: "Ирина Абашева",
+                hero_title_2: "Ваш персональный гид на рынке недвижимости",
+                hero_subtitle: "Профессиональный подбор, продажа и экспертная поддержка при покупке, аренде и инвестициях в жилую недвижимость Португалии. Прозрачные условия, личный подход и полное юридическое сопровождение.",
+                btn_explore_services: "Посмотреть услуги",
+                btn_get_in_touch: "Связаться со мной",
+                agent_title: "Лицензированный консультант",
+                stat_location: "Португалия (Север, Центр, Лиссабон и побережье)",
+                stat_partner: "Партнерская сеть ведущих агентств Португалии",
 
-          <article class="service-card">
-            <span class="number">02</span>
-            <h3 data-en="Property Search for Purchase" data-ru="Поиск недвижимости для покупки"></h3>
-            <p data-en="A tailored search based on your goals, budget and lifestyle, with viewings, negotiation and transaction support." data-ru="Поиск с учётом ваших целей, бюджета и образа жизни, включая просмотры, переговоры и сопровождение покупки."></p>
-            <div class="price">€1,000</div>
-          </article>
+                about_heading: "Обо мне и моем подходе",
+                about_p1: "Я работаю на рынке недвижимости Португалии, помогая клиентам со всего мира покупать, продавать и арендовать жилье с максимальной безопасностью и комфортом.",
+                about_p2: "Главный приоритет моей работы — защита интересов клиента, трансляция реальной ситуации на рынке и снятие всех стрессовых факторов, связанных с оформлением документов, адаптацией и взаимодействием с местными структурами.",
+                
+                pillar_1_title: "Аналитика рынка",
+                pillar_1_desc: "Оценка реальной стоимости объектов, динамики цен по регионам и потенциала капитализации.",
+                pillar_2_title: "Индивидуальный подбор",
+                pillar_2_desc: "Поиск объектов под конкретный жизненный сценарий, образ жизни или инвестиционные задачи.",
+                pillar_3_title: "Полное сопровождение",
+                pillar_3_desc: "Координация с юристами, нотариусами, налоговыми консультантами и банками до передачи ключей.",
 
-          <article class="service-card">
-            <span class="number">03</span>
-            <h3 data-en="Rental Property Search" data-ru="Поиск аренды жилья"></h3>
-            <p data-en="I find suitable properties, communicate with landlords and agencies, organise viewings and support the rental process." data-ru="Подбор вариантов, общение с собственниками и агентствами, просмотры и сопровождение процесса аренды."></p>
-            <div class="price">1 month / 50%</div>
-            <small data-en="Long-term 12+ months / mid-term 1–11 months." data-ru="Долгосрочная аренда 12+ месяцев / среднесрочная 1–11 месяцев."></small>
-          </article>
+                services_subtitle: "Услуги и Тарифы",
+                services_title: "Профессиональные услуги по недвижимости",
+                services_intro: "Полный спектр услуг с четким ценообразованием и индивидуальным подходом на каждом этапе сделки.",
 
-          <article class="service-card">
-            <span class="number">04</span>
-            <h3 data-en="Renting Out Your Property" data-ru="Сдача вашей недвижимости в аренду"></h3>
-            <p data-en="I manage the tenant search, listing, enquiries, screening, viewings, negotiation, contract coordination and key handover." data-ru="Поиск арендатора, объявление, запросы, предварительный отбор, просмотры, переговоры, договор и передача ключей."></p>
-            <div class="price">1–1.5 months' rent</div>
-            <small data-en="Long-term rental. Property management is priced individually." data-ru="Долгосрочная аренда. Управление объектом рассчитывается индивидуально."></small>
-          </article>
+                service_1_title: "Продажа вашей недвижимости",
+                service_1_price: "5% + IVA (23%)",
+                service_1_desc: "Комплексное сопровождение продажи объектов в Португалии по максимальной рыночной стоимости.",
+                s1_feat_1: "Сравнительный анализ и оценка стоимости",
+                s1_feat_2: "Профессиональная подготовка и продвижение",
+                s1_feat_3: "Работа через агентскую сеть Португалии",
+                s1_feat_4: "Организация показов и ведение переговоров",
 
-          <article class="service-card">
-            <span class="number">05</span>
-            <h3 data-en="Choosing the Right Area" data-ru="Помощь в выборе района"></h3>
-            <p data-en="A private tour by car or on foot, with practical information about neighbourhoods, schools, transport, infrastructure and property prices." data-ru="Индивидуальная поездка на машине или прогулка с практической информацией о районах, школах, транспорте, инфраструктуре и ценах на недвижимость."></p>
-            <div class="price">€200 / 2 hours</div>
-            <small data-en="Outside Lisbon area: individual pricing." data-ru="За пределами Лиссабона — индивидуальная стоимость."></small>
-          </article>
+                service_2_title: "Подбор недвижимости под покупку",
+                service_2_price: "1 000 €",
+                service_2_desc: "Персональный поиск объекта недвижимости, полностью удовлетворяющего вашим целям и бюджету.",
+                s2_feat_1: "Анализ рынка и выбор проверенных объектов",
+                s2_feat_2: "Проверка юридической чистоты с юристом",
+                s2_feat_3: "Организация показов и сопровождение сделки",
+                s2_feat_4: "Помощь с открытием счета и NIF",
 
-          <article class="service-card">
-            <span class="number">06</span>
-            <h3 data-en="Relocation Consultation" data-ru="Консультация по переезду в Португалию"></h3>
-            <p data-en="An online consultation about regions, cities, living costs, housing, schools, healthcare, infrastructure and everyday life in Portugal." data-ru="Онлайн-консультация о регионах и городах, стоимости жизни, жилье, школах, медицине, инфраструктуре и реальной жизни в Португалии."></p>
-            <div class="price">€100 / hour</div>
-          </article>
+                service_3_title: "Поиск долгосрочной и среднесрочной аренды",
+                service_3_price: "от 50% стоимости месяца",
+                service_3_desc: "Подбор жилья в аренду (1-11 месяцев или от 12 месяцев) на выгодных и понятных условиях.",
+                s3_feat_1: "Долгосрок (12+ мес): 1 – 1.5 арендные платы",
+                s3_feat_2: "Среднесрок (1-11 мес): 50% от 1 месяца",
+                s3_feat_3: "Коммуникация с владельцами от вашего имени",
+                s3_feat_4: "Согласование контракта аренды",
 
-          <article class="service-card">
-            <span class="number">07</span>
-            <h3 data-en="Utility Connection Services" data-ru="Подключение коммунальных услуг"></h3>
-            <p data-en="Help with electricity, water, gas, internet and other essential services after buying or renting a property." data-ru="Помощь с электричеством, водой, газом, интернетом и другими необходимыми услугами после покупки или аренды жилья."></p>
-            <div class="price">€120</div>
-            <small data-en="In-person visit, if required: +€5 per visit within Greater Lisbon." data-ru="Выезд при необходимости: +€5 за выезд в зоне Большого Лиссабона."></small>
-          </article>
+                service_4_title: "Ознакомительный тур по району",
+                service_4_price: "200 € / 2 часа",
+                service_4_desc: "Живой пешеходный или автомобильный тур по интересующему вас городу или району Португалии.",
+                s4_feat_1: "Обзор инфраструктуры, школ и транспорта",
+                s4_feat_2: "Оценка плюсов и минусов каждого микрорайона",
+                s4_feat_3: "Рекомендации местных заведений и сервисов",
+                s4_feat_4: "Ответы на вопросы по бытовой жизни",
 
-          <article class="service-card">
-            <span class="number">08</span>
-            <h3 data-en="Cars from Germany & France" data-ru="Автомобили из Германии и Франции"></h3>
-            <p data-en="Vehicle search, information checks, technical inspection, negotiation, purchase, transport to Portugal, customs, taxes, registration and documentation." data-ru="Поиск автомобиля, проверка информации, техническая инспекция, переговоры, покупка, доставка в Португалию, таможня, налоги, регистрация и документы."></p>
-            <div class="price">€3,500</div>
-            <small data-en="Full support." data-ru="Полное сопровождение."></small>
-          </article>
+                service_5_title: "Консультация по переезду и жилью",
+                service_5_price: "100 € / час",
+                service_5_desc: "Онлайн или очная индивидуальная консультация по стратегическим вопросам переезда и рынка жилья.",
+                s5_feat_1: "Анализ вариантов покупки и аренды",
+                s5_feat_2: "Обзор специфики регионов Португалии",
+                s5_feat_3: "Пошаговая дорожная карта переезда",
+                s5_feat_4: "Ответы на бытовые и юридические вопросы",
 
-        </div>
-      </div>
-    </section>
+                service_6_title: "Сдача объекта в аренду и коммуникации",
+                service_6_price: "По запросу",
+                service_6_desc: "Сдача вашей недвижимости проверенным жильцам и помощь в подключении коммунальных услуг.",
+                s6_feat_1: "Поиск и благонадежная проверка арендаторов",
+                s6_feat_2: "Подготовка объекта, фото и публикация",
+                s6_feat_3: "Подключение воды, электричества, газа и интернета",
+                s6_feat_4: "Оформление контрактов и переоформление счетов",
 
-    <section id="about" class="about section">
-      <div class="container about-grid">
-        <div>
-          <p class="eyebrow" data-en="ABOUT ME" data-ru="ОБО МНЕ"></p>
-          <h2 data-en="Portugal is not just a destination. It is everyday life." data-ru="Португалия — это не просто место. Это жизнь каждый день."></h2>
-        </div>
-        <div>
-          <p data-en="I am Irina Abasheva, a real estate and relocation professional in Portugal. I help clients navigate property, relocation and practical matters with a personal, hands-on approach." data-ru="Я Ирина Абашева, специалист по недвижимости и релокации в Португалии. Я помогаю решать вопросы, связанные с недвижимостью, переездом и повседневной жизнью, лично сопровождая процесс."></p>
-          <p data-en="My goal is to make complicated processes more understandable, organised and comfortable — with one person who knows your situation and stays involved." data-ru="Моя задача — сделать сложные процессы понятнее, организованнее и комфортнее, когда рядом есть один человек, который знает вашу ситуацию и сопровождает вас на протяжении всего процесса."></p>
-        </div>
-      </div>
-    </section>
+                btn_order_service: "Заказать услугу",
 
-    <section id="contact" class="contact section">
-      <div class="container contact-box">
-        <div>
-          <p class="eyebrow" data-en="CONTACT" data-ru="КОНТАКТЫ"></p>
-          <h2 data-en="Let’s talk about what you need in Portugal." data-ru="Давайте обсудим, что вам нужно в Португалии."></h2>
-          <p data-en="Tell me what you are looking for and I will get back to you." data-ru="Расскажите, что вам нужно, и я свяжусь с вами."></p>
-        </div>
-        <div class="contact-actions">
-          <a class="button" href="mailto:YOUR_EMAIL@example.com">Email</a>
-          <a class="button button-light" href="https://wa.me/YOURNUMBER">WhatsApp</a>
-        </div>
-      </div>
-    </section>
-  </main>
+                articles_subtitle: "Блог и Аналитика",
+                articles_title: "Статьи о недвижимости и жизни в Португалии",
+                articles_intro: "Обзоры рынка, аналитические данные и полезные руководства для покупателей, инвесторов и арендаторов.",
+                art_1_tag: "Анализ рынка",
+                art_1_title: "Бум недвижимости на севере Португалии",
+                art_1_excerpt: "Почему северные регионы и пригороды Порту становятся ключевым магнитом для инвестиций и покупки жилья для постоянного проживания.",
+                art_2_tag: "Исследование",
+                art_2_title: "Португальские семьи и динамика рынка жилья",
+                art_2_excerpt: "Как меняются предпочтения португальских семей, спрос на качественное жилье и баланс между покупкой и долгосрочной арендой.",
+                art_3_tag: "Локальный обзор",
+                art_3_title: "Алкасер-ду-Сал в цифрах и фактах",
+                art_3_excerpt: "Полный обзор потенциала района Алкасер-ду-Сал: рост спроса, близость к побережью Алентежу и перспективные объекты.",
+                btn_read_more: "Читать полностью",
 
-  <footer>
-    <div class="container footer">
-      <span>© <span id="year"></span> Irina Abasheva</span>
-      <span>Portugal</span>
-    </div>
-  </footer>
+                contact_subtitle: "Связаться со мной",
+                contact_title: "Давайте обсудим ваш проект",
+                contact_intro: "Оставьте заявку или свяжитесь со мной напрямую через удобные мессенджеры.",
+                direct_contacts_title: "Прямая связь",
+                direct_contacts_desc: "Быстрые временные каналы связи (замените на свои реальные контакты).",
+                label_whatsapp: "WhatsApp / Сообщения",
+                label_email: "Электронная почта",
+                contact_hours_title: "Рабочие часы:",
+                contact_hours_val: "Пн — Пт: 09:00 - 19:00 (WET / Португалия)",
+                
+                form_name: "Ваше имя",
+                form_phone: "Телефон / WhatsApp",
+                form_email: "Email",
+                form_service: "Интересующая услуга",
+                form_message: "Сообщение",
+                opt_consultation: "Общая консультация",
+                opt_sales: "Продажа недвижимости",
+                opt_buying: "Подбор недвижимости под покупку",
+                opt_rental: "Поиск аренды",
+                opt_tour: "Ознакомительный тур по району",
+                opt_rent_out: "Сдача объекта / Коммуникации",
+                btn_send_message: "Отправить сообщение",
+                
+                msg_success_title: "Спасибо за обращение!",
+                msg_success_desc: "Ваше сообщение успешно отправлено. Ирина свяжется с вами в самое ближайшее время.",
+                btn_send_another: "Отправить ещё одно",
+                btn_close: "Закрыть",
+                footer_subtitle: "Недвижимость и консультации в Португалии",
+                footer_rights: "Все права защищены."
+            },
+            en: {
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_articles: "Articles",
+                nav_contact: "Contact",
+                
+                hero_badge: "Real Estate Consultant in Portugal",
+                hero_title_1: "Irina Abasheva",
+                hero_title_2: "Your Personal Guide in Portugal's Property Market",
+                hero_subtitle: "Professional search, sales, and expert support for buying, renting, and investing in residential real estate across Portugal. Transparent conditions and full legal guidance.",
+                btn_explore_services: "View Services",
+                btn_get_in_touch: "Get in Touch",
+                agent_title: "Licensed Realtor",
+                stat_location: "Portugal (North, Center, Lisbon & Coast)",
+                stat_partner: "Partner network of Portugal's top agencies",
 
-  <script src="script.js"></script>
+                about_heading: "About Me & My Approach",
+                about_p1: "I work across the Portuguese real estate market, helping clients worldwide buy, sell, and rent properties with complete peace of mind and security.",
+                about_p2: "My top priority is protecting my clients' interests, delivering honest market insights, and removing all stress associated with legal documentation, adaptation, and local regulations.",
+                
+                pillar_1_title: "Market Analysis",
+                pillar_1_desc: "Accurate property valuations, regional price trend analysis, and capital growth potential.",
+                pillar_2_title: "Tailored Search",
+                pillar_2_desc: "Targeted property sourcing aligned with your unique lifestyle, relocation, or investment strategy.",
+                pillar_3_title: "Full Transaction Support",
+                pillar_3_desc: "Seamless coordination with lawyers, notaries, tax advisors, and banks until key handover.",
+
+                services_subtitle: "Services & Pricing",
+                services_title: "Professional Real Estate Services",
+                services_intro: "Comprehensive property solutions with clear transparent pricing and personalized client care.",
+
+                service_1_title: "Property Sales Service",
+                service_1_price: "5% + VAT (23%)",
+                service_1_desc: "End-to-end representation to market and sell your Portuguese property at top market value.",
+                s1_feat_1: "Comparative market analysis and valuation",
+                s1_feat_2: "Professional property prep & marketing",
+                s1_feat_3: "Multi-agency collaboration network",
+                s1_feat_4: "Viewing management & skilled negotiation",
+
+                service_2_title: "Property Search for Buyers",
+                service_2_price: "€1,000",
+                service_2_desc: "Dedicated buyer representation to find and acquire your ideal property within your budget.",
+                s2_feat_1: "Market filtering & verified property selection",
+                s2_feat_2: "Legal due diligence with specialized lawyers",
+                s2_feat_3: "Guided viewings & transaction management",
+                s2_feat_4: "NIF tax number & bank account assistance",
+
+                service_3_title: "Rental Property Search",
+                service_3_price: "from 50% monthly rent",
+                service_3_desc: "Sourcing long-term (12+ months) or mid-term (1–11 months) residential rentals under favorable terms.",
+                s3_feat_1: "Long-term (12+ mos): 1 – 1.5 months' rent",
+                s3_feat_2: "Mid-term (1-11 mos): 50% of 1 month's rent",
+                s3_feat_3: "Direct negotiation with Portuguese landlords",
+                s3_feat_4: "Lease contract review and verification",
+
+                service_4_title: "Neighborhood Orientation Tour",
+                service_4_price: "€200 / 2 hours",
+                service_4_desc: "In-person walking or driving tour exploring your target city or area in Portugal.",
+                s4_feat_1: "In-depth overview of schools & transit",
+                s4_feat_2: "Pros and cons of individual neighborhoods",
+                s4_feat_3: "Local recommendations and lifestyle insights",
+                s4_feat_4: "Answers to everyday living questions",
+
+                service_5_title: "Relocation & Housing Consultation",
+                service_5_price: "€100 / hour",
+                service_5_desc: "Tailored online or face-to-face strategic session on Portuguese housing and relocation.",
+                s5_feat_1: "Buy vs Rent decision analysis",
+                s5_feat_2: "Regional comparison across Portugal",
+                s5_feat_3: "Step-by-step relocation roadmap",
+                s5_feat_4: "Answers to legal & daily setup queries",
+
+                service_6_title: "Renting Out Property & Utilities",
+                service_6_price: "Upon Request",
+                service_6_desc: "Finding verified tenants for your property and handling utility connections.",
+                s6_feat_1: "Tenant vetting and background verification",
+                s6_feat_2: "Property staging, photo & portal listing",
+                s6_feat_3: "Water, power, gas, and high-speed internet setup",
+                s6_feat_4: "Lease drafting and utility account transfers",
+
+                btn_order_service: "Request Service",
+
+                articles_subtitle: "Blog & Insights",
+                articles_title: "Articles on Portuguese Real Estate",
+                articles_intro: "Market updates, analytical reports, and essential guides for home buyers and investors.",
+                art_1_tag: "Market Analysis",
+                art_1_title: "Northern Portugal Housing Boom",
+                art_1_excerpt: "Why northern regions and Porto suburbs are becoming a major hub for real estate investments and relocation.",
+                art_2_tag: "Research",
+                art_2_title: "Portuguese Families & Housing Dynamics",
+                art_2_excerpt: "Shifting preferences among local families, demand for high-efficiency homes, and rental dynamics.",
+                art_3_tag: "Local Overview",
+                art_3_title: "Alcácer do Sal in Numbers & Market Potential",
+                art_3_excerpt: "An overview of Alcácer do Sal: rising demand, proximity to the Alentejo coast, and prime opportunities.",
+                btn_read_more: "Read Article",
+
+                contact_subtitle: "Get in Touch",
+                contact_title: "Let's Discuss Your Real Estate Goals",
+                contact_intro: "Send an inquiry or reach out directly via messaging apps.",
+                direct_contacts_title: "Direct Contact",
+                direct_contacts_desc: "Temporary contact channels (replace with your actual links).",
+                label_whatsapp: "WhatsApp / Messaging",
+                label_email: "Email Address",
+                contact_hours_title: "Working Hours:",
+                contact_hours_val: "Mon — Fri: 09:00 - 19:00 (WET / Portugal)",
+                
+                form_name: "Your Name",
+                form_phone: "Phone / WhatsApp",
+                form_email: "Email",
+                form_service: "Interested Service",
+                form_message: "Message",
+                opt_consultation: "General Consultation",
+                opt_sales: "Property Sales",
+                opt_buying: "Property Purchase Search",
+                opt_rental: "Rental Search",
+                opt_tour: "Neighborhood Tour",
+                opt_rent_out: "Property Leasing & Utilities",
+                btn_send_message: "Send Message",
+
+                msg_success_title: "Thank You!",
+                msg_success_desc: "Your message has been sent successfully. Irina will get back to you shortly.",
+                btn_send_another: "Send Another Message",
+                btn_close: "Close",
+                footer_subtitle: "Real Estate & Relocation Consultancy in Portugal",
+                footer_rights: "All rights reserved."
+            },
+            pt: {
+                nav_home: "Início",
+                nav_services: "Serviços",
+                nav_articles: "Artigos",
+                nav_contact: "Contactos",
+                
+                hero_badge: "Consultora Imobiliária em Portugal",
+                hero_title_1: "Irina Abasheva",
+                hero_title_2: "A sua guia pessoal no mercado imobiliário",
+                hero_subtitle: "Pesquisa profissional, venda e acompanhamento especializado na compra, arrendamento e investimento imobiliário em Portugal. Transparência e apoio jurídico completo.",
+                btn_explore_services: "Ver Serviços",
+                btn_get_in_touch: "Entrar em Contacto",
+                agent_title: "Consultora Imobiliária Licenciada",
+                stat_location: "Portugal (Norte, Centro, Lisboa e Costa)",
+                stat_partner: "Rede de parceiros das principais agências em Portugal",
+
+                about_heading: "Sobre Mim e o Meu Método",
+                about_p1: "Atuo no mercado imobiliário em Portugal, ajudando clientes nacionais e internacionais a comprar, vender e arrendar imóveis com total segurança e tranquilidade.",
+                about_p2: "A minha prioridade é defender os interesses do cliente, apresentar a realidade transparente do mercado e eliminar qualquer fonte de stress em termos de documentação e burocracia.",
+                
+                pillar_1_title: "Análise de Mercado",
+                pillar_1_desc: "Avaliação rigorosa do valor real dos imóveis, tendências por região e potencial de valorização.",
+                pillar_2_title: "Pesquisa Personalizada",
+                pillar_2_desc: "Procura focada nas suas necessidades específicas de vida, mudança ou estratégia de investimento.",
+                pillar_3_title: "Acompanhamento Total",
+                pillar_3_desc: "Coordenação com advogados, solicitadores, notários e bancos até à entrega das chaves.",
+
+                services_subtitle: "Serviços e Tarifas",
+                services_title: "Serviços Imobiliários Profissionais",
+                services_intro: "Soluções completas com preços claros e apoio personalizado em todas as etapas da transação.",
+
+                service_1_title: "Venda do Seu Imóvel",
+                service_1_price: "5% + IVA (23%)",
+                service_1_desc: "Gestão integrada do processo de venda do seu imóvel em Portugal pelo valor máximo de mercado.",
+                s1_feat_1: "Análise comparativa de mercado e avaliação",
+                s1_feat_2: "Preparação profissional e promoção do imóvel",
+                s1_feat_3: "Partilha com rede de agências parceiras",
+                s1_feat_4: "Organização de visitas e negociação direta",
+
+                service_2_title: "Pesquisa de Imóvel para Compra",
+                service_2_price: "1 000 €",
+                service_2_desc: "Serviço exclusivo de seleção e procura do imóvel ideal de acordo com o seu orçamento.",
+                s2_feat_1: "Filtragem de mercado e seleção de imóveis verificados",
+                s2_feat_2: "Verificação jurídica com advogados especializados",
+                s2_feat_3: "Acompanhamento a visitas e gestão da transação",
+                s2_feat_4: "Apoio na obtenção de NIF e abertura de conta bancária",
+
+                service_3_title: "Pesquisa de Arrendamento",
+                service_3_price: "a partir de 50% de 1 mês",
+                service_3_desc: "Procura de alojamento para longa duração (12+ meses) ou média duração (1-11 meses).",
+                s3_feat_1: "Longa Duração (12+ meses): 1 – 1.5 rendas",
+                s3_feat_2: "Média Duração (1-11 meses): 50% de 1 mês",
+                s3_feat_3: "Comunicação direta com senhorios em Portugal",
+                s3_feat_4: "Análise e validação do contrato de arrendamento",
+
+                service_4_title: "Tour de Orientação Local",
+                service_4_price: "200 € / 2 horas",
+                service_4_desc: "Tour guiado a pé ou de carro pela cidade ou freguesia do seu interesse em Portugal.",
+                s4_feat_1: "Visão geral de infraestruturas, escolas e transportes",
+                s4_feat_2: "Análise de prós e contras de cada bairro",
+                s4_feat_3: "Recomendações locais e dicas de estilo de vida",
+                s4_feat_4: "Esclarecimento de dúvidas sobre a vida quotidiana",
+
+                service_5_title: "Consultoria de Relocalização e Habitação",
+                service_5_price: "100 € / hora",
+                service_5_desc: "Sessão individual online ou presencial sobre estratégia de habitação e relocalização.",
+                s5_feat_1: "Análise comparativa: Comprar vs Arrendar",
+                s5_feat_2: "Visão geral das regiões de Portugal",
+                s5_feat_3: "Plano passo a passo para a sua mudança",
+                s5_feat_4: "Esclarecimento de questões práticas e legais",
+
+                service_6_title: "Gestão de Arrendamento e Serviços de Água/Luz",
+                service_6_price: "Sob consulta",
+                service_6_desc: "Procura de inquilinos qualificados e apoio na ligação de contratos de utilidades públicas.",
+                s6_feat_1: "Seleção e verificação de solvabilidade de inquilinos",
+                s6_feat_2: "Preparação do imóvel, fotografias e divulgação",
+                s6_feat_3: "Ligação de contratos de água, luz, gás e internet",
+                s6_feat_4: "Elaboração de contrato e alteração de titularidade",
+
+                btn_order_service: "Solicitar Serviço",
+
+                articles_subtitle: "Blogue e Análises",
+                articles_title: "Artigos sobre Imobiliário em Portugal",
+                articles_intro: "Notícias de mercado, relatórios analíticos e guias práticos para compradores e investidores.",
+                art_1_tag: "Análise de Mercado",
+                art_1_title: "O Boom Imobiliário no Norte de Portugal",
+                art_1_excerpt: "Por que razão o Norte e os arredores do Porto se estão a tornar um polo de atração de investimento.",
+                art_2_tag: "Investigação",
+                art_2_title: "Famílias Portuguesas e a Dinâmica do Mercado",
+                art_2_excerpt: "Mudanças nas preferências das famílias locais, procura por casas eficientes e equilíbrio com o arrendamento.",
+                art_3_tag: "Visão Local",
+                art_3_title: "Alcácer do Sal em Números e Factos",
+                art_3_excerpt: "Análise completa do potencial de Alcácer do Sal: proximidade à costa do Alentejo e oportunidades de investimento.",
+                btn_read_more: "Ler Artigo Completo",
+
+                contact_subtitle: "Entrar em Contacto",
+                contact_title: "Vamos Falar sobre o Seu Projeto",
+                contact_intro: "Envie uma mensagem ou entre em contacto diretamente através dos canais disponíveis.",
+                direct_contacts_title: "Contacto Direto",
+                direct_contacts_desc: "Canais temporários de contacto (substitua pelos seus dados reais).",
+                label_whatsapp: "WhatsApp / Mensagens",
+                label_email: "Endereço de E-mail",
+                contact_hours_title: "Horário de Atendimento:",
+                contact_hours_val: "Seg — Sex: 09:00 - 19:00 (WET / Portugal)",
+                
+                form_name: "O seu nome",
+                form_phone: "Telefone / WhatsApp",
+                form_email: "E-mail",
+                form_service: "Serviço de interesse",
+                form_message: "Mensagem",
+                opt_consultation: "Consultoria Geral",
+                opt_sales: "Venda de Imóvel",
+                opt_buying: "Pesquisa para Compra",
+                opt_rental: "Pesquisa de Arrendamento",
+                opt_tour: "Tour de Orientação",
+                opt_rent_out: "Colocação no Mercado e Serviços",
+                btn_send_message: "Enviar Mensagem",
+
+                msg_success_title: "Obrigado pelo contacto!",
+                msg_success_desc: "A sua mensagem foi enviada com sucesso. A Irina responderá o mais brevemente possível.",
+                btn_send_another: "Enviar Outra Mensagem",
+                btn_close: "Fechar",
+                footer_subtitle: "Consultoria Imobiliária em Portugal",
+                footer_rights: "Todos os direitos reservados."
+            }
+        };
+
+        // Articles Content Database (Multi-language)
+        const articleDatabase = {
+            1: {
+                tag: { ru: "Анализ рынка", en: "Market Analysis", pt: "Análise de Mercado" },
+                title: { 
+                    ru: "Бум недвижимости на севере Португалии (2024-2025)", 
+                    en: "Northern Portugal Housing Boom (2024-2025)", 
+                    pt: "O Boom Imobiliário no Norte de Portugal (2024-2025)" 
+                },
+                content: {
+                    ru: `
+                        <p>Северный регион Португалии, особенно агломерация Порту, Гайя, Матозиньюш и прилегающие муниципалитеты, переживает стабильный рост интереса как со стороны покупателей для собственного проживания, так и инвесторов.</p>
+                        <p><strong>Ключевые факторы роста:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Высокое качество жизни и современная городская инфраструктура.</li>
+                            <li>Более привлекательная стоимость за квадратный метр по сравнению с центральным Лиссабоном.</li>
+                            <li>Активное развитие международных IT-хабов и университетов.</li>
+                        </ul>
+                        <p>Покупка недвижимости на Севере остается надежным инструментом сохранения и приумножения капитала с отличным потенциалом долгосрочной аренды.</p>
+                    `,
+                    en: `
+                        <p>Northern Portugal, particularly the Greater Porto region, Vila Nova de Gaia, and Matosinhos, is experiencing sustained growth from both owner-occupiers and international investors.</p>
+                        <p><strong>Key Growth Drivers:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>High quality of life paired with modern infrastructure.</li>
+                            <li>Competitive price per square meter compared to central Lisbon.</li>
+                            <li>Expanding tech hubs, international schools, and universities.</li>
+                        </ul>
+                        <p>Acquiring residential property in the North remains a resilient option offering reliable rental yields and long-term capital appreciation.</p>
+                    `,
+                    pt: `
+                        <p>A região Norte de Portugal, com destaque para o Grande Porto, Vila Nova de Gaia e Matosinhos, continua a registar uma procura sustentada por parte de compradores e investidores internacionais.</p>
+                        <p><strong>Fatores Determinantes:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Elevada qualidade de vida e infraestruturas modernas.</li>
+                            <li>Valores por metro quadrado mais atrativos em comparação com o centro de Lisboa.</li>
+                            <li>Crescimento de polos tecnológicos e universidades.</li>
+                        </ul>
+                        <p>A aquisição de património imobiliário no Norte afirma-se como uma escolha segura com excelente potencial de rentabilidade.</p>
+                    `
+                }
+            },
+            2: {
+                tag: { ru: "Исследование", en: "Research", pt: "Investigação" },
+                title: { 
+                    ru: "Португальские семьи и динамика рынка жилья", 
+                    en: "Portuguese Families & Housing Dynamics", 
+                    pt: "Famílias Portuguesas e a Dinâmica do Mercado" 
+                },
+                content: {
+                    ru: `
+                        <p>За последние три года поведение местных семей на рынке жилья существенно трансформировалось под влиянием банковских ставок и новых требований к энергоэффективности домов.</p>
+                        <p>Семьи обращают повышенное внимание на качественное утепление, наличие террас и энергетический класс A/B. Также растет спрос на пригородные зоны с хорошим транспортным сообщением.</p>
+                    `,
+                    en: `
+                        <p>Over recent years, domestic buyer dynamics in Portugal have adapted to changing interest rates and evolving preferences for energy-efficient living.</p>
+                        <p>Local buyers increasingly prioritize high energy performance (A/B rated homes), private outdoor spaces, and suburban locations connected by train lines.</p>
+                    `,
+                    pt: `
+                        <p>Nos últimos anos, o comportamento das famílias portuguesas no mercado habitacional ajustou-se às condições de crédito e à procura por maior eficiência energética.</p>
+                        <p>Observa-se uma clara preferência por imóveis com boa isolação térmica, varandas e localização em zonas periféricas com bons acessos de transporte.</p>
+                    `
+                }
+            },
+            3: {
+                tag: { ru: "Локальный обзор", en: "Local Overview", pt: "Visão Local" },
+                title: { 
+                    ru: "Алкасер-ду-Сал в цифрах и фактах", 
+                    en: "Alcácer do Sal in Numbers & Market Potential", 
+                    pt: "Alcácer do Sal em Números e Factos" 
+                },
+                content: {
+                    ru: `
+                        <p>Алкасер-ду-Сал (Alcácer do Sal) — исторический город в регионе Алентежу, расположенный всего в 50 минутах от Лиссабона и в 20 минутах от знаменитых пляжей Компорта и Мелидеш.</p>
+                        <p>Регион привлекает инвесторов уникальным сочетанием аутентичной португальской природы, инвестиционными налоговыми льготами и быстрорастущим спросом на премиальную загородную недвижимость.</p>
+                    `,
+                    en: `
+                        <p>Alcácer do Sal is a charming historic town in Alentejo, located just 50 minutes south of Lisbon and 20 minutes from the world-famous beaches of Comporta and Melides.</p>
+                        <p>The municipality draws buyers looking for authentic Portuguese heritage, peaceful nature, and high appreciation potential near coastal hotspots.</p>
+                    `,
+                    pt: `
+                        <p>Alcácer do Sal é um município histórico do Alentejo, situado a apenas 50 minutos de Lisboa e a 20 minutos das praias da Comporta e Melides.</p>
+                        <p>Esta localização atrai cada vez mais compradores que valorizam a tranquilidade, o património cultural e a proximidade à costa alentejana.</p>
+                    `
+                }
+            }
+        };
+
+        // Global State
+        let currentLang = 'ru';
+
+        // Initialize Page Navigation
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // Show active page
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update nav active styling
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => l.classList.remove('active'));
+            const activeLink = document.getElementById(`nav-${pageId}`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Scroll smoothly to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Switch Language Handler
+        function switchLanguage(lang) {
+            currentLang = lang;
+
+            // Update buttons state
+            ['ru', 'en', 'pt'].forEach(l => {
+                const btn = document.getElementById(`lang-${l}`);
+                if (l === lang) {
+                    btn.className = 'px-2.5 py-1 rounded-full transition-colors active-lang bg-gold text-white font-semibold';
+                } else {
+                    btn.className = 'px-2.5 py-1 rounded-full transition-colors text-charcoal hover:text-gold';
+                }
+            });
+
+            // Update all DOM elements with data-i18n
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    el.textContent = i18n[lang][key];
+                }
+            });
+        }
+
+        // Request specific service (Pre-fill contact form)
+        function requestService(serviceName) {
+            navigateTo('contact');
+            const select = document.getElementById('form-service-select');
+            if (select) {
+                // Find matching option or set value
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].text.toLowerCase().includes(serviceName.toLowerCase()) || 
+                        select.options[i].value.toLowerCase().includes(serviceName.toLowerCase())) {
+                        select.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Article Modal Handlers
+        function openArticleModal(id) {
+            const article = articleDatabase[id];
+            if (!article) return;
+
+            const modal = document.getElementById('article-modal');
+            const tag = document.getElementById('modal-tag');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            tag.textContent = article.tag[currentLang] || article.tag['ru'];
+            title.textContent = article.title[currentLang] || article.title['ru'];
+            body.innerHTML = article.content[currentLang] || article.content['ru'];
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticleModal() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Form Submission Simulation
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('form-success-message');
+
+            form.classList.add('hidden');
+            successMsg.classList.remove('hidden');
+        }
+
+        function resetContactForm() {
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('form-success-message');
+
+            form.reset();
+            form.classList.remove('hidden');
+            successMsg.classList.add('hidden');
+        }
+
+        // Window Load Initializer
+        window.onload = function() {
+            // Default to Home page and RU language
+            navigateTo('home');
+            switchLanguage('ru');
+        };
+    </script>
 </body>
 </html>
